@@ -1,0 +1,23 @@
+# English strings go here for Rails i18n
+ru:
+  kanban_menu_caption: Kanban
+  
+  kanban_label_title: " Канбан-доска"
+  kanban_label_unspecified: не определено
+  kanban_label_wip_limits: Максимальное кол-во задач на человека
+  kanban_label_wip_limit_exceeded: Лимит задач превышен
+  kanban_label_fields: Столбцы
+  kanban_label_update: Обновлено
+
+  kanban_label_within_1_day: в течение 1 дня
+  kanban_label_within_3_days: в течение 3 дней
+  kanban_label_within_1_week: в течение 1 недели
+  kanban_label_within_2_weeks: в течение 2 недель
+  kanban_label_within_1_month: в течение 1 месяца
+  kanban_label_within_2_months: в течение 2 месяцев
+  kanban_label_within_3_months: в течение 3 месяцев
+  kanban_label_for_all_time: за все время
+
+  kanban_label_recent_history_is_here: Тут отображается обсуждение выбранной задачи
+  kanban_label_recent_history: История обсуждения
+  kanban_label_add_notes: Добавить комментарий
