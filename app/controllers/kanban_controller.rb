@@ -140,7 +140,7 @@ class KanbanController < ApplicationController
         if status_id == Constants::WIP_COUNT_STATUS_FIELD then
           @user_id_array.each {|uid|
             wip_counter = 0
-              @issues_hash[status_id].each {|issue|
+            @issues_hash[status_id].each {|issue|
               if issue.assigned_to_id == uid then
                 wip_counter += 1
               end
