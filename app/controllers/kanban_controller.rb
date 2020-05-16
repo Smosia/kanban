@@ -163,36 +163,6 @@ class KanbanController < ApplicationController
       end
     }
 
-    # Remove users without any tasks in project
-    @user_id_array.delete_if{ |uid|
-      Issue.where(assigned_to_id: uid)
-      .where(project_id: unique_project_id_array)
-      .where(status: @status_fields_array)
-      .where(is_private: 0)
-      .limit(Constants::SELECT_LIMIT)
-      .order("CASE assigned_to_id WHEN '" + @user_id.to_s + "' THEN 1 ELSE 2 END, assigned_to_id DESC")  # Sort @user_id first
-      .length == 0
-    }
-
-    # Remove users without active tasks in project
-    @user_id_array.delete_if{ |uid|
-      Issue.where(assigned_to_id: uid)
-      .where(project_id: unique_project_id_array)
-      .where(status: @done_issue_statuses_array)
-      .where("updated_on < '" + closed_from + "'")
-      .where(is_private: 0)
-      .limit(Constants::SELECT_LIMIT)
-      .order("CASE assigned_to_id WHEN '" + @user_id.to_s + "' THEN 1 ELSE 2 END, assigned_to_id DESC")  # Sort @user_id first
-      .length != 0 && Issue.where(assigned_to_id: uid)
-      .where(project_id: unique_project_id_array)
-      .where(status: @status_fields_array - @done_issue_statuses_array)
-      .where("updated_on >= '" + updated_from + "'")
-      .where(is_private: 0)
-      .limit(Constants::SELECT_LIMIT)
-      .order("CASE assigned_to_id WHEN '" + @user_id.to_s + "' THEN 1 ELSE 2 END, assigned_to_id DESC")  # Sort @user_id first
-      .length == 0
-    }
-
   end
   
   private
