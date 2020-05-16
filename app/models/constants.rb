@@ -41,5 +41,5 @@ class Constants < ActiveRecord::Base
   # Enable hide user without issues
   # 0: Hide
   # 1: Show
-  DISPLAY_USER_WITHOUT_ISSUES = 1
+  DISPLAY_USER_WITHOUT_ISSUES = 0
 end
