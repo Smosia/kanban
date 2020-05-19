@@ -16,6 +16,7 @@ en:
   kanban_label_within_1_month: within 1month
   kanban_label_within_2_months: within 2months
   kanban_label_within_3_months: within 3months
+  kanban_label_for_all_time: for all time
 
   kanban_label_recent_history_is_here: Recent history is displayed here
   kanban_label_recent_history: Recent History

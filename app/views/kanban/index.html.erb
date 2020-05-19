@@ -37,6 +37,7 @@
             <option value="31" <% if @updated_within == "31" then %> selected <% end %>><%= I18n.t(:kanban_label_within_1_month) %></option>
             <option value="62" <% if @updated_within == "62" then %> selected <% end %>><%= I18n.t(:kanban_label_within_2_months) %></option>
             <option value="93" <% if @updated_within == "93" then %> selected <% end %>><%= I18n.t(:kanban_label_within_3_months) %></option>
+            <option value="0" <% if @updated_within == "0" then %> selected <% end %>><%= I18n.t(:kanban_label_for_all_time) %></option>
           </select>
         </td>
       </tr>

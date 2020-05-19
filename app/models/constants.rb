@@ -7,8 +7,8 @@ class Constants < ActiveRecord::Base
   SELECT_LIMIT = 250
 
   # Days since upadated date
-  # Please choose "1" "3" "7" "14" "31" "62" "93"
-  DEFAULT_VALUE_UPDATED_WITHIN = "31"
+  # Please choose "1" "3" "7" "14" "31" "62" "93" "0"
+  DEFAULT_VALUE_UPDATED_WITHIN = "0"
 
   # Days since closed date
   # Please choose "1" "3" "7" "14" "31" "62" "93"

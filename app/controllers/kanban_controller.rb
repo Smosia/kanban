@@ -83,7 +83,11 @@ class KanbanController < ApplicationController
     }
 
     # Updated datetime for filter
-    time_from = Time.now - 3600 * 24 * @updated_within.to_i
+    if @updated_within == "0" then
+      time_from = Time.at(0)
+    else
+      time_from = Time.now - 3600 * 24 * @updated_within.to_i
+    end
     updated_from = time_from.strftime("%Y-%m-%d 00:00:00")
 
     # Closed datetime for filter
