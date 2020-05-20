@@ -34,15 +34,19 @@ class KanbanController < ApplicationController
     end
     
     # Get users for assignee filetr
-    if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
-      @selectable_users = User.where(type: "User").where(status: 1)
+    if @project_all == "1" then
+      if Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
+        @selectable_users = User.where(type: "User").where(status: 1)
+      end
     else
       @selectable_users = @project.users
     end
 
     # Get groups for group filetr
-    if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
-      @selectable_groups = Group.where(type: "Group")
+    if @project_all == "1" then
+      if Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
+        @selectable_groups = Group.where(type: "Group")
+      end
     else
       members = Member.where(project_id: @project.id)
       member_user_ids = []
