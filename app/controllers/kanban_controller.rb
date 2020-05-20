@@ -212,7 +212,7 @@ class KanbanController < ApplicationController
       remove_user_without_issues
     end
     
-    if @project == nil && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "0" then
+    if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT != 1 then
       @user_id_array.clear
     end
 
