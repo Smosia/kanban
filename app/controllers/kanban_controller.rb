@@ -66,10 +66,6 @@ class KanbanController < ApplicationController
       }
     end
 
-    if @project == nil && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "0" then
-      @user_id_array.clear
-    end
-
     # Remove inactive users from array of display users
     copied_user_id_array = @user_id_array.dup
     copied_user_id_array.each {|id|
@@ -215,6 +211,11 @@ class KanbanController < ApplicationController
     if Constants::DISPLAY_USER_WITHOUT_ISSUES != 1 then
       remove_user_without_issues
     end
+    
+    if @project == nil && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "0" then
+      @user_id_array.clear
+    end
+
   end
   
   private
