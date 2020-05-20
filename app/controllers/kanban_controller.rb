@@ -214,7 +214,11 @@ class KanbanController < ApplicationController
     
     # Hide issues if no project is selected 
     if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT != 1 then
-      @user_id_array.clear
+      copied_user_id_array.each {|uid|
+      if uid != @user.name
+        @user_id_array.del(uid)
+      end
+    }
     end
 
   end
