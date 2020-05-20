@@ -42,4 +42,9 @@ class Constants < ActiveRecord::Base
   # 0: Hide
   # 1: Show
   DISPLAY_USER_WITHOUT_ISSUES = 0
+
+  # Enable hide issues if no project is specified
+  # 0: Hide
+  # 1: Show
+  DISPLAY_ISSUES_WITHOUT_PROJECT = 0
 end
