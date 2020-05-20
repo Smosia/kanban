@@ -37,6 +37,8 @@ class KanbanController < ApplicationController
     if @project_all == "1" then
       if Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
         @selectable_users = User.where(type: "User").where(status: 1)
+      else
+        @selectable_users = []
       end
     else
       @selectable_users = @project.users
@@ -46,6 +48,8 @@ class KanbanController < ApplicationController
     if @project_all == "1" then
       if Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
         @selectable_groups = Group.where(type: "Group")
+      else
+        @selectable_groups = []
       end
     else
       members = Member.where(project_id: @project.id)
