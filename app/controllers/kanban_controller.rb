@@ -66,7 +66,7 @@ class KanbanController < ApplicationController
       }
     end
 
-    if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "0" then
+    if @project == nil && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "0" then
       @user_id_array.clear
     end
 
