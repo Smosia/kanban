@@ -211,6 +211,12 @@ class KanbanController < ApplicationController
     if Constants::DISPLAY_USER_WITHOUT_ISSUES != 1 then
       remove_user_without_issues
     end
+    
+    # Hide issues if no project is selected 
+    if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT != 1 then
+      @user_id_array.clear
+    end
+
   end
   
   private
