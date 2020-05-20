@@ -35,22 +35,14 @@ class KanbanController < ApplicationController
     
     # Get users for assignee filetr
     if @project_all == "1" then
-      if Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
-        @selectable_users = User.where(type: "User").where(status: 1)
-      else
-        @selectable_users = []
-      end
+      @selectable_users = User.where(type: "User").where(status: 1)
     else
       @selectable_users = @project.users
     end
 
     # Get groups for group filetr
     if @project_all == "1" then
-      if Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "1" then
-        @selectable_groups = Group.where(type: "Group")
-      else
-        @selectable_groups = []
-      end
+      @selectable_groups = Group.where(type: "Group")
     else
       members = Member.where(project_id: @project.id)
       member_user_ids = []
@@ -72,6 +64,10 @@ class KanbanController < ApplicationController
           @user_id_array = group.user_ids
         end
       }
+    end
+
+    if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == "0" then
+      @user_id_array.clear
     end
 
     # Remove inactive users from array of display users
