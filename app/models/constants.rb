@@ -54,4 +54,9 @@ class Constants < ActiveRecord::Base
   # 0: Hide
   # 1: Show
   DISPLAY_ISSUES_WITHOUT_PROJECT = 0
+
+  # Display comment dialog when issue was dropped
+  # 0: Not display
+  # 1: Display
+  DISPLAY_COMMENT_DIALOG_WHEN_DROP = 1
 end
