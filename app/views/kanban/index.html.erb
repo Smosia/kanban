@@ -223,7 +223,7 @@
                   <!-- This is one card -->
                   <div id="issue-<%= issue.id %>" class="hascontextmenu created-by-me context-menu-selection
                     <!-- Card color by priority -->
-                    <% if issue.priority_id >= 3 then %> my-issue-card-high-priority <% elsif issue.priority_id == 2 %> my-issue-card <% else %> my-issue-card-low-priority <% end %>">
+                    <% if issue.priority_id >= 5 then %> my-issue-card-high-priority <% elsif issue.priority_id == 4 %> my-issue-card <% else %> my-issue-card-low-priority <% end %>">
                     <div style="float: right; font-size: smaller"><%= issue.project.name %></div><p><input type="checkbox" name="ids[]" value="<%= issue.id %>"> <%= issue.tracker.name %> #<%= issue.id %></p>
                     <p><a href="./issues/<%= issue.id %>"><%= issue.subject %></a></p>
                     <hr>
