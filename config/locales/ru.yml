@@ -21,3 +21,9 @@ ru:
   kanban_label_recent_history_is_here: Тут отображается обсуждение выбранной задачи
   kanban_label_recent_history: История обсуждения
   kanban_label_add_notes: Добавить комментарий
+
+  kanban_label_overdue: Просрочено
+  kanban_label_today: Сегодня
+  kanban_label_tommorow: Завтра
+  kanban_label_thisweek: На этой неделе
+  kanban_label_nextweek: На следующей неделе
