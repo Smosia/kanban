@@ -245,18 +245,18 @@ class KanbanController < ApplicationController
         @issues_hash[status_id] = issues.order(updated_on: "DESC").limit(Constants::SELECT_LIMIT)
       end
     }
-
-    # Hide user without issues
-    if Constants::DISPLAY_USER_WITHOUT_ISSUES != 1 then
-      remove_user_without_issues
-      remove_group_without_issues
-    end
     
     # Hide issues of other users if no project is selected 
     if @project_all == "1" then
       @status_fields_array.each {|status_id|
         @issues_hash[status_id] = @issues_hash[status_id].where(assigned_to_id: @current_user.id)
       }
+    end
+
+    # Hide user without issues
+    if Constants::DISPLAY_USER_WITHOUT_ISSUES != 1 then
+      remove_user_without_issues
+      remove_group_without_issues
     end
 
   end
