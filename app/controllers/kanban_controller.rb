@@ -249,6 +249,7 @@ class KanbanController < ApplicationController
     # Hide user without issues
     if Constants::DISPLAY_USER_WITHOUT_ISSUES != 1 then
       remove_user_without_issues
+      remove_group_without_issues
     end
     
     # Hide issues of other users if no project is selected 
@@ -439,6 +440,26 @@ class KanbanController < ApplicationController
       }
       if !uid.nil? && number_of_issues == 0 then
         @user_id_array.delete(uid)
+      end
+    }
+  end
+
+  #
+  # Remove groups without issues from @group_id_array
+  #
+  def remove_group_without_issues
+    copied_group_id_array = @group_id_array.dup
+    copied_group_id_array.each {|uid|
+      number_of_issues = 0
+      @status_fields_array.each {|status_id|
+        @issues_hash[status_id].each {|issue|
+          if issue.assigned_to_id == uid then
+            number_of_issues += 1
+          end
+        }
+      }
+      if !uid.nil? && number_of_issues == 0 then
+        @group_id_array.delete(uid)
       end
     }
   end
