@@ -251,9 +251,11 @@ class KanbanController < ApplicationController
       remove_user_without_issues
     end
     
-    # Hide issues if no project is selected 
-    if @project_all == "1" && Constants::DISPLAY_ISSUES_WITHOUT_PROJECT != 1 then
-      @user_id_array.clear
+    # Hide issues of other users if no project is selected 
+    if @project_all == "1" then
+      @status_fields_array.each {|status_id|
+        @issues_hash[status_id] = @issues_hash[status_id].where(assigned_to_id: @current_user.id)
+      }
     end
 
   end
