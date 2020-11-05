@@ -78,19 +78,21 @@
           </select>
         </td>
       </tr>
-      <tr>
-        <td style="width: 100px">
-          <label><%= I18n.t(:field_assigned_to) %></label>
-        </td>
-        <td>
-          <select name="user_id">
-            <option value="unspecified" <% if @user_id == "unspecified" then %> selected <% end %>><%= I18n.t(:kanban_label_unspecified) %></option>
-            <% @selectable_users.each{|user| %>
-              <option value="<%= user.id %>" <% if @user_id.to_i == user.id then %> selected <% end %>><%= user.name %></option>
-            <% } %>
-          </select>
-        </td>
-      </tr>
+      <% if @project_all == "0" then %>
+        <tr>
+          <td style="width: 100px">
+            <label><%= I18n.t(:field_assigned_to) %></label>
+          </td>
+          <td>
+            <select name="user_id">
+              <option value="unspecified" <% if @user_id == "unspecified" then %> selected <% end %>><%= I18n.t(:kanban_label_unspecified) %></option>
+              <% @selectable_users.each{|user| %>
+                <option value="<%= user.id %>" <% if @user_id.to_i == user.id then %> selected <% end %>><%= user.name %></option>
+              <% } %>
+            </select>
+          </td>
+        </tr>
+      <% end %>
       <tr>
         <td style="width: 100px">
           <label><%= I18n.t(:label_group) %></label>
@@ -104,21 +106,6 @@
           </select>
         </td>
       </tr>
-      <% if Constants::DISPLAY_ISSUES_WITHOUT_PROJECT == 1 then %>
-        <tr>
-          <td style="width: 100px">
-            <label><%= I18n.t(:label_project) %></label>
-          </td>
-          <td>
-            <select name="project_all">
-              <% if !@project_id.blank? then %>
-                <option value="0" <% if @project_all == "0" then %> selected <% end %>><%= @project.name %></option>
-              <% end %>
-              <option value="1" <% if @project_all == "1" then %> selected <% end %>><%= I18n.t(:kanban_label_unspecified) %></option>
-            </select>
-          </td>
-        </tr>
-      <% end %>
       <% if @project_all == "0" then %>
         <tr>
           <td style="width: 100px">
