@@ -54,4 +54,9 @@ class Constants < ActiveRecord::Base
   # 0: Not display
   # 1: Display
   DISPLAY_COMMENT_DIALOG_WHEN_DROP = 1
+
+  # Hide group tasks if no project is selected
+  # 0: Hide
+  # 1: Show
+  DISPLAY_GROUP_TASKS_IF_NO_PROJECT_SELECTED = 0
 end

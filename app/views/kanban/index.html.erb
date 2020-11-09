@@ -78,7 +78,8 @@
           </select>
         </td>
       </tr>
-      <% if @project_all == "0" then %>
+      <% if @project_all == "1" && Constants::DISPLAY_GROUP_TASKS_IF_NO_PROJECT_SELECTED == 0 then %>
+      <% else %>
         <tr>
           <td style="width: 100px">
             <label><%= I18n.t(:field_assigned_to) %></label>

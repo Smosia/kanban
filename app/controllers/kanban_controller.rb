@@ -46,7 +46,11 @@ class KanbanController < ApplicationController
 
     # Get groups for group filetr
     if @project_all == "1" then
-      @selectable_groups = Group.where(type: "Group")
+      if Constants::DISPLAY_GROUP_TASKS_IF_NO_PROJECT_SELECTED == 0 then
+        @selectable_groups = {}
+      else
+        @selectable_groups = Group.where(type: "Group")
+      end
     else
       members = Member.where(project_id: @project.id)
       member_user_ids = []
@@ -245,13 +249,6 @@ class KanbanController < ApplicationController
         @issues_hash[status_id] = issues.order(updated_on: "DESC").limit(Constants::SELECT_LIMIT)
       end
     }
-    
-    # Hide issues of other users if no project is selected 
-    if @project_all == "1" then
-      @status_fields_array.each {|status_id|
-        @issues_hash[status_id] = @issues_hash[status_id].where(assigned_to_id: @current_user.id)
-      }
-    end
 
     # Hide user without issues
     if Constants::DISPLAY_USER_WITHOUT_ISSUES != 1 then
