@@ -15,14 +15,17 @@ class KanbanController < ApplicationController
     end
 
     # Restore session
-    restore_params_from_session
+    if @project_all != "1" then
+      restore_params_from_session
+    end
 
     # Initialize params
     initialize_params
 
     # Store session
-    store_params_to_session
-
+    if @project_all != "1" then
+      store_params_to_session
+    end
     # Get user to display avator
     if @user_id == "unspecified" then
       @user = User.find(@current_user.id)
