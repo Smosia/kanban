@@ -8,6 +8,7 @@ ru:
   kanban_label_wip_limit_exceeded: Лимит задач превышен
   kanban_label_fields: Столбцы
   kanban_label_update: Обновлено
+  kanban_label_show_private_issues: Отображать личные задачи 
 
   kanban_label_within_1_day: в течение 1 дня
   kanban_label_within_3_days: в течение 3 дней

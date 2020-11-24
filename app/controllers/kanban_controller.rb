@@ -39,10 +39,10 @@ class KanbanController < ApplicationController
     
     # Get users for assignee filetr
     if @project_all == "1" then
-      show_private_issues = true;
+      @show_private_issues = true;
       @selectable_users = User.where(type: "User").where(status: 1)
     else
-      show_private_issues = false;
+      @show_private_issues = false;
       @selectable_users = @project.users
     end
 
@@ -212,7 +212,7 @@ class KanbanController < ApplicationController
           .where(project_id: unique_project_id_array)
           .where(status: status_id)
           .where("updated_on >= '" + updated_from + "'")
-        if show_private_issues == false then
+        if @show_private_issues == false then
           issues = issues.where(is_private: 0)
         end
         if @version_id != "unspecified" then
