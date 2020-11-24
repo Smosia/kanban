@@ -36,8 +36,6 @@ class KanbanController < ApplicationController
     else
       @project = Project.find(@project_id)
     end
-    
-    @show_private_issues = false;
 
     # Get users for assignee filetr
     if @project_all == "1" then
@@ -438,7 +436,7 @@ class KanbanController < ApplicationController
     if @show_private_issues.blank? then
         @show_private_issues = false
     end
-    
+
   end
 
   #
