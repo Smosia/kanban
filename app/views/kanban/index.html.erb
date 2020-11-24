@@ -121,6 +121,8 @@
             </select>
           </td>
         </tr>
+      <% end %>  
+      <% if @project_all == "1" then %>
         <tr>
           <td style="width: 100px">
             <label><%= I18n.t(:kanban_label_show_private_issues) %></label>
