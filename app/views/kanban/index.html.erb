@@ -130,7 +130,7 @@
           <td>
             <% if @show_private_issues == true then flag = true else flag = false end %>
             <div style="float: left;">
-              <%= check_box "show_private_issues", @show_private_issues, {:checked => flag} %>
+              <%= check_box "show_private_issues_checkbox", @show_private_issues, {:checked => flag} %>
             </div>
           </td>
         </tr>

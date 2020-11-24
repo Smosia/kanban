@@ -285,7 +285,7 @@ class KanbanController < ApplicationController
     session_hash["version_id"] = @version_id
     session_hash["status_fields"] = @status_fields
     session_hash["wip_max"] = @wip_max
-    session_hash["show_private_issues"] = @show_private_issues
+    session_hash["show_private_issues_checkbox"] = @show_private_issues_checkbox
     session[:kanban] = session_hash
   end
 
@@ -359,10 +359,10 @@ class KanbanController < ApplicationController
     end
 
     # Show private issues
-    if !session_hash.blank? && params[:show_private_issues].blank?
-      @show_private_issues = session_hash["show_private_issues"]
+    if !session_hash.blank? && params[:show_private_issues_checkbox].blank?
+      @show_private_issues_checkbox = session_hash["show_private_issues_checkbox"]
     else
-      @show_private_issues = params[:show_private_issues]
+      @show_private_issues_checkbox = params[:show_private_issues_checkbox]
     end
   end
 
@@ -432,9 +432,17 @@ class KanbanController < ApplicationController
       @wip_max = Constants::DEFAULT_VALUE_WIP_MAX
     end
 
+
     # Show private issues
-    if @show_private_issues.blank? then
-        @show_private_issues = false
+    if !@show_private_issues_checkbox.blank? then
+      @show_private_issues_checkbox.each {|id,chk|
+        if chk == "1"
+          @show_private_issues = true
+        end
+      }
+    else
+      # Default
+      @show_private_issues = false
     end
 
   end
