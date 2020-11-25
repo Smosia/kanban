@@ -438,6 +438,8 @@ class KanbanController < ApplicationController
       @show_private_issues_checkbox.each {|id,chk|
         if chk == "1"
           @show_private_issues = true
+        else
+          @show_private_issues = false
         end
       }
     else
