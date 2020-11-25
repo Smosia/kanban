@@ -209,8 +209,10 @@ class KanbanController < ApplicationController
         issues = Issue.where(assigned_to_id: @user_id_array)
           .where(project_id: unique_project_id_array)
           .where(status: status_id)
-          .where(is_private: 0)
           .where("updated_on >= '" + updated_from + "'")
+        if @show_private_issues != true then
+          issues = issues.where(is_private: 0)
+        end
         if @version_id != "unspecified" then
           issues = issues.where(fixed_version_id: @version_id)
         end
@@ -238,8 +240,10 @@ class KanbanController < ApplicationController
         issues = Issue.where(assigned_to_id: @user_id_array)
             .where(project_id: unique_project_id_array)
             .where(status: status_id)
-            .where(is_private: 0)
             .where("updated_on >= '" + closed_from + "'")
+        if @show_private_issues != true then
+          issues = issues.where(is_private: 0)
+        end
         if @version_id != "unspecified" then
           issues = issues.where(fixed_version_id: @version_id)
         end
@@ -281,6 +285,7 @@ class KanbanController < ApplicationController
     session_hash["version_id"] = @version_id
     session_hash["status_fields"] = @status_fields
     session_hash["wip_max"] = @wip_max
+    session_hash["show_private_issues_checkbox"] = @show_private_issues_checkbox
     session[:kanban] = session_hash
   end
 
@@ -352,6 +357,13 @@ class KanbanController < ApplicationController
     else
       @wip_max = params[:wip_max]
     end
+
+    # Show private issues
+    if !session_hash.blank? && params[:show_private_issues_checkbox].blank?
+      @show_private_issues_checkbox = session_hash["show_private_issues_checkbox"]
+    else
+      @show_private_issues_checkbox = params[:show_private_issues_checkbox]
+    end
   end
 
   #
@@ -419,6 +431,22 @@ class KanbanController < ApplicationController
     if @wip_max.nil? || @wip_max.to_i == 0 then
       @wip_max = Constants::DEFAULT_VALUE_WIP_MAX
     end
+
+
+    # Show private issues
+    if !@show_private_issues_checkbox.blank? then
+      @show_private_issues_checkbox.each {|id,chk|
+        if chk == "1"
+          @show_private_issues = true
+        else
+          @show_private_issues = false
+        end
+      }
+    else
+      # Default
+      @show_private_issues = false
+    end
+
   end
 
   #
